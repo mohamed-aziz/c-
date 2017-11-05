@@ -42,6 +42,14 @@ public:
     cout << *ptr << endl;
   }
 
+
+  bool Avancer(int bytes) {
+    if (ptr + bytes - &v <= this->taille) {
+      *(this->ptr) += bytes;
+      return true;
+    }
+    return false;
+  }
   
 };
 
@@ -57,6 +65,17 @@ int main() {
 
   a->Affiche();
 
+  if (a->Avancer(10)) {
+    cout << "On avance le pointeur avec 10 bytes" << endl;
+  }
+
+  a->Affiche();
+
+  if (!a->Avancer(100)) {
+    cout << "Avancement illegal avec 100 bytes" << endl;
+    a->Affiche();
+  }
+  
   delete a;
   
   return 0;
